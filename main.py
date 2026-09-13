@@ -8,16 +8,23 @@ def mostrar_menu():
 
 
 def main():
+    tarefas = []
     while True:
         mostrar_menu()
         opcao = input("Escolha: ")
         print("Você escolheu:", opcao)
 
         if opcao == "1":
-            print("Adicionar tarefa")
+            tarefa = input("Descreva a nova tarefa: ")
+            tarefas.append(tarefa)
+            print("Tarefa adicionada com sucesso!")
 
         elif opcao == "2":
-            print("Listar tarefas")
+            if tarefas:
+                for indice, tarefa in enumerate(tarefas, start=1):
+                    print(f"{indice} - {tarefa}")
+            else:
+                print("Nenhuma tarefa cadastrada.")
 
         elif opcao == "3":
             print("Concluir tarefa")
