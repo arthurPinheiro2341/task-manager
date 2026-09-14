@@ -30,7 +30,7 @@ def main():
             tarefa = {
                 "descricao": descricao,
                 "concluida": False
-}
+            }
             tarefas.append(tarefa)
             print("Tarefa adicionada com sucesso!")
 
@@ -42,18 +42,22 @@ def main():
             if not tarefas:
                 print("Nenhuma tarefa cadastrada.")
                 continue
-            
+
             listar_tarefas(tarefas)
             indice =input("Digite a tarefa que deseja concluir: ") 
             tarefas[int(indice)-1]["concluida"] = True
             print("Tarefa concluída com sucesso!")    
         
-            
-            
-
 
         elif opcao == "4":
-            print("Remover tarefa")
+            if not tarefas:
+                print("Nenhuma tarefa cadastrada.")
+                continue
+
+            listar_tarefas(tarefas)
+            indice = input("Digite a tarefa que deseja remover: ")
+            tarefas.pop(int(indice) - 1)
+            print("Tarefa removida com sucesso!")
 
         elif opcao == "0":
             print("Saindo do programa...")
