@@ -15,19 +15,33 @@ def main():
         print("Você escolheu:", opcao)
 
         if opcao == "1":
-            tarefa = input("Descreva a nova tarefa: ")
+            descricao = input("Descreva a nova tarefa: ")
+            tarefa = {
+                "descricao": descricao,
+                "concluida": False
+}
             tarefas.append(tarefa)
             print("Tarefa adicionada com sucesso!")
 
         elif opcao == "2":
             if tarefas:
                 for indice, tarefa in enumerate(tarefas, start=1):
-                    print(f"{indice} - {tarefa}")
+                    print(indice, tarefa["descricao"], tarefa["concluida"])
             else:
                 print("Nenhuma tarefa cadastrada.")
 
         elif opcao == "3":
-            print("Concluir tarefa")
+            if tarefas:
+                for indice, tarefa in enumerate(tarefas, start=1):
+                    print(indice, tarefa["descricao"], tarefa["concluida"]) 
+                indice =input("Digite a tarefa que deseja concluir:") 
+                tarefas[int(indice)-1]["concluida"] = True
+                print("Tarefa concluída com sucesso!")    
+            else:
+                print("Nenhuma tarefa cadastrada.")
+            
+            
+
 
         elif opcao == "4":
             print("Remover tarefa")
