@@ -6,13 +6,24 @@ def mostrar_menu():
     print("4 - Remover tarefa")
     print("0 - Sair")
 
+def listar_tarefas(tarefas):
+    if tarefas:
+        for indice, tarefa in enumerate(tarefas, start=1):
+            if tarefa["concluida"]:
+                print (f"{indice} - [x] {tarefa['descricao']}")
+            else:
+                print(f"{indice} - [ ] {tarefa['descricao']}")
+    else:
+        print("Nenhuma tarefa cadastrada.")
+         
+
 
 def main():
     tarefas = []
     while True:
         mostrar_menu()
         opcao = input("Escolha: ")
-        print("Você escolheu:", opcao)
+        #print("Você escolheu:", opcao)
 
         if opcao == "1":
             descricao = input("Descreva a nova tarefa: ")
@@ -24,21 +35,19 @@ def main():
             print("Tarefa adicionada com sucesso!")
 
         elif opcao == "2":
-            if tarefas:
-                for indice, tarefa in enumerate(tarefas, start=1):
-                    print(indice, tarefa["descricao"], tarefa["concluida"])
-            else:
-                print("Nenhuma tarefa cadastrada.")
+            listar_tarefas(tarefas)
+           
 
         elif opcao == "3":
-            if tarefas:
-                for indice, tarefa in enumerate(tarefas, start=1):
-                    print(indice, tarefa["descricao"], tarefa["concluida"]) 
-                indice =input("Digite a tarefa que deseja concluir:") 
-                tarefas[int(indice)-1]["concluida"] = True
-                print("Tarefa concluída com sucesso!")    
-            else:
+            if not tarefas:
                 print("Nenhuma tarefa cadastrada.")
+                continue
+            
+            listar_tarefas(tarefas)
+            indice =input("Digite a tarefa que deseja concluir: ") 
+            tarefas[int(indice)-1]["concluida"] = True
+            print("Tarefa concluída com sucesso!")    
+        
             
             
 
